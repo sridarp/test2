@@ -1,0 +1,85 @@
+<content-header>
+  <div class="product-details-heading">
+    <img ng-if="vm.product.img" class="product-details-heading__icon" ng-src="/images/{{ ::vm.product.img }}" alt="Product Icon">
+    <span class="content-header__title">{{ ::vm.product.name }}</span>
+  </div>
+  <div class="content-header__aside">
+    <back-link></back-link>
+  </div>
+</content-header>
+
+<details-table heading="Details">
+  <div class="details-table__row">
+    <div class="details-table__label">Name</div>
+    <div class="details-table__detail">{{ ::vm.product.name }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Description</div>
+    <div class="details-table__detail">{{ ::vm.product.description }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Product Status</div>
+    <div class="details-table__detail">{{ ::vm.product.active ? 'Active' : 'Inactive' }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Product Type</div>
+    <div class="details-table__detail">{{ ::vm.product.product_type.name }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Product Tags</div>
+    <div class="details-table__detail">
+      <div class="product-details__tag" ng-repeat="tag in vm.product.tags track by $index">
+        <tag-item allow-remove="false" active="true" text="::tag"></tag-item>
+      </div>
+    </div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Provider</div>
+    <div class="details-table__detail">{{ ::vm.product.provider.name }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Creation Date</div>
+    <div class="details-table__detail">{{ ::vm.product.created_at | date:'short' }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Last Updated</div>
+    <div class="details-table__detail">{{ ::vm.product.updated_at | date:'short' }}</div>
+  </div>
+</details-table>
+
+<details-table heading="Provisioning Answers">
+  <div class="details-table__row" ng-repeat="answer in vm.product.answers track by answer.id">
+    <div class="details-table__label"> {{ ::answer.name | uppercase }}</div>
+    <div class="details-table__detail"> {{ ::answer.value }}</div>
+  </div>
+</details-table>
+
+<region heading="Pricing">
+  <table class="product-pricing">
+    <thead>
+    <tr>
+      <th class="product-pricing__heading"></th>
+      <th class="product-pricing__heading">Setup</th>
+      <th class="product-pricing__heading">Hourly</th>
+      <th class="product-pricing__heading">Monthly</th>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="selectRow">
+      <td class="product-pricing__cell product-pricing__cell--padding"></td>
+      <td class="product-pricing__cell product-pricing__cell">{{ ::vm.product.setup_price | currency }}</td>
+      <td class="product-pricing__cell product-pricing__cell">{{ ::vm.product.hourly_price | currency }}</td>
+      <td class="product-pricing__cell product-pricing__cell">{{ ::vm.product.monthly_price | currency }}</td>
+    </tr>
+    </tbody>
+  </table>
+</region>
+

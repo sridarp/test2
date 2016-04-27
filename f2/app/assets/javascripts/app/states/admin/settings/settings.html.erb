@@ -1,0 +1,28 @@
+<content-header short="true">
+  <div class="content-header__body">
+    <span class="content-header__title">Settings</span>
+  </div>
+</content-header>
+<region ng-repeat="(title, settings) in ::vm.groups" heading="{{ ::title }}">
+  <table class="tables">
+    <thead>
+    <tr>
+      <th class="tables__heading settings-table__name">Name</th>
+      <th class="tables__heading settings-table__description">Description</th>
+      <th class="tables__heading ">Value</th>
+      <th class="tables__heading tables__heading--actions">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in ::settings">
+      <td class="tables__cell">{{ ::row.name }}</td>
+      <td class="tables__cell">{{ ::row.description }}</td>
+      <td ng-if="::row.value_type == 'password'" class="tables__cell">&mdash; <em>hidden</em> &mdash;</td>
+      <td ng-if="::row.value_type != 'password'" class="tables__cell">{{ row.value }}</td>
+      <td class="tables__cell tables__cell--actions">
+        <img ng-click="vm.edit(row)" class="tables__action" src="<%= image_url 'ic_edit.png' %>" alt="Edit"/>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</region>

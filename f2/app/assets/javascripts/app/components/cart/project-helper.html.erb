@@ -1,0 +1,25 @@
+<div class="modals__header">
+  <button type="button" class="modals__close" ng-click="$dismiss()" aria-label="Close">
+    <i class="fa fa-close" aria-hidden="true"></i>
+    <span class="sr-only">Close</span>
+  </button>
+  <div class="modals__title">Select Project</div>
+</div>
+
+<div class="modals__body">
+  <p>Select the project on which to add this product</p>
+
+  <form class="forms">
+    <formly-form model="vm.selections" fields="vm.fields"></formly-form>
+  </form>
+</div>
+
+<div class="modals__footer">
+  <button type="button" class="modals__button modals__button--cancel" ng-click="$dismiss()">
+    Cancel
+  </button>
+  <button type="button" class="modals__button" ng-click="vm.addToCart()"
+          ng-disabled="!vm.selections.projectId">
+    Ok
+  </button>
+</div>

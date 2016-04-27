@@ -1,0 +1,2 @@
+class ApprovalPolicy < ProjectPolicy
+end

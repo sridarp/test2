@@ -1,0 +1,39 @@
+<table ng-if="::0 < vm.services.length" st-table="vm.services" class="tables">
+  <thead>
+  <tr>
+    <th class="tables__heading tables__heading--sortable services-table__heading--service-id"
+        st-sort="id" st-sort-default="true">
+      Service Id
+    </th>
+    <th st-sort="product_name" class="tables__heading tables__heading--sortable services-table__heading--description">
+      Product
+    </th>
+    <th st-sort="provision_status"
+        class="tables__heading tables__heading--sortable services-table__heading--status">
+      Status
+    </th>
+    <th class="tables__heading tables__heading--actions">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="row in vm.services track by row.id">
+    <td class="tables__cell services-table__cell--service-id">
+      {{ ::row.id }}
+    </td>
+    <td class="tables__cell services-table__cell--description">
+      <product-description product="row.product"></product-description>
+    </td>
+    <td class="tables__cell services-table__cell--status">
+      <status type="{{ ::row.status }}">{{ ::row.status }}</status>
+    </td>
+    <td class="tables__cell tables__cell-actions">
+      <a ui-sref="services.details({serviceId: row.id})">
+        <%= image_tag 'ic_edit.png', alt: 'Edit' %>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div ng-if="::0 === vm.services.length" class="services-table__empty">
+  No services at this time.
+</div>

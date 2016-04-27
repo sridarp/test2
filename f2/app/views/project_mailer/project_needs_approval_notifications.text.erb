@@ -1,0 +1,8 @@
+Dear Admin,
+The following project has been created:
+Name: <%= @project['name'].to_s.upcase %>
+Budget: <%= number_to_currency(@project['budget']) %>
+URL: <%= @project_url %>
+Please navigate to the project and approve it at your discretion.
+Thank you,
+Project Jellyfish Mailer

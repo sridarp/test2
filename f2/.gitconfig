@@ -1,0 +1,4 @@
+[merge "keepLocal"]
+        name = always preserve local during merge for folder ./public
+        driver = keepLocal.sh %O %A %B
+        recursive = binary

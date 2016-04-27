@@ -1,0 +1,41 @@
+<content-header short="true">
+  <div class="admin-users-list__body">
+    <span class="content-header__title">Users</span>
+  </div>
+  <div class="admin-users-list__aside">
+    <a ui-sref="admin.users.create" class="btn-rounded">Add User</a>
+  </div>
+</content-header>
+
+<table st-table="vm.staff" class="tables tables--bordered">
+  <thead>
+  <tr>
+    <th class="tables__heading tables__heading--sortable" st-sort="first_name"> Name</th>
+    <th class="tables__heading tables__heading--sortable" st-sort="email">Email</th>
+    <th class="tables__heading tables__heading--sortable" st-sort="role">Role</th>
+    <th class="tables__heading ">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="tables__row" ng-repeat="row in vm.staff">
+    <td class="tables__cell tables__cell--name">{{ ::row.first_name}} {{ ::row.last_name}}</td>
+    <td class="tables__cell tables__cell--email">{{ ::row.email }}</td>
+    <td class="tables__cell tables__cell--role">{{ ::row.role }}</td>
+    <td class="tables__cell tables__cell--actions">
+      <a ui-sref="admin.users.edit({id: row.id})" class="tables__action">
+        <%= image_tag 'ic_edit.png', alt: 'Edit' %>
+      </a>
+      <a href="#" class="tables__action tables__action--delete"
+         confirmation
+         confirmation-position="left-center"
+         confirmation-message="Are you sure you want to remove this user?"
+         confirmation-ok-style="danger"
+         confirmation-ok-text="Yes, Delete It"
+         confirmation-on-ok="vm.deleteUser($index)"
+         confirmation-show-cancel="false">
+        <%= image_tag 'ic_deletequestion.png', alt: 'Delete' %>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>

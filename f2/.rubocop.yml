@@ -1,0 +1,55 @@
+AllCops:
+  Exclude:
+    - db/**/*
+    - tmp/**/*
+    - vendor/**/*
+    - bin/**
+    - lib/tasks/sample.rake
+    - lib/jellyfish_fog_aws/spec/dummy/**/*
+  TargetRubyVersion: 2.3
+
+Rails:
+  Enabled: true
+
+ClassLength:
+  Max: 300
+
+MethodLength:
+  Max: 50
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 38
+
+Style/GlobalVars:
+  AllowedVariables: [$evm]
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+GuardClause:
+  Enabled: false
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/ClosingParenthesisIndentation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+

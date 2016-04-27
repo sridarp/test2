@@ -1,0 +1,127 @@
+<div class="modals__header">
+  <button type="button" class="modals__close" ng-click="$dismiss()" aria-label="Close">
+    <i class="fa fa-close " aria-hidden="true"></i>
+    <span class="sr-only">Close</span>
+  </button>
+
+  <div class="modals__title">Cart</div>
+</div>
+
+<div class="modals__body">
+  <div class="btn-group pull-right" dropdown is-open="status.isopen">
+    <button type="btn pull-right" aria-label="settings" title="Cart Settings" dropdown-toggle>
+      <i class="fa fa-wrench" aria-hidden="true"></i>
+      <span class="sr-only">Settings</span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+      <li role="menuitem"><a href="#" ng-click="vm.resetDefaultProject()">Reset Default Project</a></li>
+      <li role="menuitem"><a href="#" ng-click="vm.removeAllProjects()">Remove All Projects</a></li>
+
+    </ul>
+  </div>
+  <tabset ng-if="!vm.isEmpty()">
+    <tab ng-repeat="project in vm.projects track by project.projectDetails.id"
+         select="vm.tabSelected(project.projectDetails)">
+      <tab-heading>
+        {{ ::project.projectDetails.name}} ({{ project.products.length }})
+        <a ng-click="vm.removeProject(project.projectDetails.id)" href='#'> <i class="fa fa-remove"></i></a>
+      </tab-heading>
+
+      <div class="details-table__row">
+        <div class="details-table__label">Total Budget</div>
+        <div class="details-table__detail">{{ ::project.projectDetails.budget | currency }}</div>
+      </div>
+      <div class="details-table__row">
+        <div class="details-table__label">Budget Spent</div>
+        <div class="details-table__detail">{{ ::project.projectDetails.spent | currency }}</div>
+      </div>
+      <div class="details-table__row">
+        <div class="details-table__label">Available</div>
+        <div class="details-table__detail">
+          <progressbar animate="false" value="::project.projectDetails.budgetRemainder()"
+                       type="{{ ::project.projectDetails.budgetUtilizationStatus() }}"
+                       title="{{ ::project.projectDetails.spent | currency }} of {{ ::project.projectDetails.budget | currency }} spent"
+                       class="details-table__progressbar">
+            <span class="project-details__budget-util">{{ project.projectDetails.budgetRemainder()  }}%</span>
+          </progressbar>
+        </div>
+      </div>
+      <div class="details-table__row">
+        <div class="details-table__label">Present Monthly Spend</div>
+        <div class="details-table__detail">{{ ::project.projectDetails.monthly_spend | currency}}</div>
+      </div>
+      <div class="details-table__row">
+        <div class="details-table__label">Projected Monthly Spend</div>
+        <div class="details-table__detail">{{ ::project.projectDetails.monthly_spend + project.total | currency }}</div>
+      </div>
+      <div class="details-table__row">
+        <div class="details-table__label">Projection</div>
+        <div class="details-table__detail">{{ ::project.projectDetails.monthsRemaining() }} months of remaining funds
+        </div>
+      </div>
+
+      <hr/>
+
+      <table st-table="orders" class="tables">
+        <thead>
+        <tr>
+          <th class="tables__heading cart-table__product">Product</th>
+          <th class="tables__heading cart-table__setup_price">Setup Price</th>
+          <th class="tables__heading cart-table__price">Monthly Cost</th>
+          <th class="tables__heading tables__heading--centered cart-table__configured">Configured</th>
+          <th class="tables__heading tables__heading--actions">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="line in project.products track by $index">
+          <td class="tables__cell">
+            <div ng-if="::!line.product.img"
+                 class="product-description__image product-description__image--missing"></div>
+            <img ng-if="::line.product.img" class="product-description__image"
+                 ng-src="/images/{{ ::line.product.img }}"/>
+            <a ui-sref="products.details({productId: line.product.id})">{{ ::line.product.name }}</a>
+          </td>
+          <td class="tables__cell">{{ ::line.product.setup_price | currency}}</td>
+          <td class="tables__cell">
+            <computed-monthly-price pricing="line.product"></computed-monthly-price>
+          </td>
+          <td class="tables__cell tables__cell--centered">
+            <img ng-if="line.service.name" src="<%= image_url 'ic_required.png' %>" alt="Project Configured"/>
+          </td>
+          <td class="tables__cell tables__cell--actions">
+            <a class="tables__action" href="#" title="Remove" ng-click="vm.remove($index)">
+              <%= image_tag 'ic_deletequestion.png', alt: 'Remove' %>
+            </a>
+            <a class="tables__action" href="#" title="Configure"
+               ng-click="vm.configure($index, line)">
+              <%= image_tag 'ic_config.png', alt: 'Configure' %>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="3" class="cart-table__footer cart-table__footer--total text-right">
+            Total for
+            <a ui-sref="projects.details({projectId : project.projectDetails.id})">{{
+              ::project.projectDetails.name}}</a>
+            : &nbsp;{{ project.total | currency }}
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </tab>
+  </tabset>
+
+  <p ng-if="vm.isEmpty()" class="cart-modal__empty">Your cart is empty.</p>
+</div>
+
+<div class="modals__footer">
+
+  <button type="button" class="btn-rounded modals__button--cancel" ng-click="$dismiss()">Cancel</button>
+  <button type="button" class="btn-rounded cart-modal__checkout"
+          ng-click="vm.checkout()"
+          ng-disabled="vm.isEmpty()">
+    Checkout
+  </button>
+</div>

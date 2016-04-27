@@ -1,0 +1,25 @@
+language: ruby
+sudo: false
+rvm: 2.3.0
+cache:  bundler
+addons:
+  postgresql: '9.4'
+  code_climate:
+    repo_token:
+      secure: "LeGo12Mjgn3xs4FHklkCvszo3Prylu0oFPwb0kUxhbkxaHs6Me7q+JePQ9kM/ngUR/FcSOtIIC3OT+6X45RjzY0sJC8MNhhWQG6bQz529oR1lFT0n8F2dahvRBbbV87BIPxSfxHq4bj/2KeDJxo1yRaJ2gA5W4OSYo4wgoveQ6c="
+before_install:
+- echo "4.0.1-$TRAVIS_BUILD_NUMBER" > VERSION
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+before_script:
+- bundle exec rake db:create
+- bundle exec rake db:setup
+- bundle exec rake setup:demo
+- bundle install
+script:
+- bundle exec rubocop
+- bundle exec rspec
+
+env:
+  global:
+    secure: oglFznpoXgadlL7TyQ7/XYHLUCKxKle7HY5+XEgox76++kWcWt9TyiYfscChHbV5ERartdrJgC+hrCz5QNyDTICMxi1eJrcyCJO9CRqVpeATW2RA+Rvedmg4XUBGqXowNSWuQVT5zZktS89dTgtoHo5sZUw2eqnEbGJ1XtIPDGs=

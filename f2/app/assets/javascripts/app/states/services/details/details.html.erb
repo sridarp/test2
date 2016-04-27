@@ -1,0 +1,25 @@
+<content-header short="true">
+  <div class="content-header__body">
+    <img ng-if="vm.product.img" class="service-details-heading__icon" ng-src="/images/{{ ::vm.product.img }}" alt="Product Icon"/>
+    <span class="content-header__title">{{ ::vm.service.product.name }}</span>
+  </div>
+  <div class="content-header__aside">
+    <operations-button service="vm.service"></operations-button>
+    <back-link></back-link>
+  </div>
+</content-header>
+
+<service-basic-details service="vm.service"></service-basic-details>
+
+<details-table heading="Provisioning Output">
+  <div ng-if=" ::!vm.service.service_outputs.length" class="details-table__row">
+    <div class="details-table__empty">Provisioning output not available for this service.</div>
+  </div>
+  <div ng-if="::vm.service.service_outputs.length" class="details-table__row"
+       ng-repeat="output in ::vm.service.service_outputs">
+    <div class="details-table__label"> {{ ::output.name }}</div>
+    <div class="details-table__detail">{{ ::output.value }}</div>
+  </div>
+</details-table>
+
+<log-table heading="Logs" records="vm.logs" items-per-page="10"></log-table>

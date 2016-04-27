@@ -1,0 +1,21 @@
+<div class="modals__header">
+  <button type="button" class="modals__close" ng-click="$dismiss()" aria-label="Close">
+    <i class="fa fa-close" aria-hidden="true"></i>
+    <span class="sr-only">Close</span>
+  </button>
+  <div class="modals__title">Membership</div>
+</div>
+
+<div class="modals__body">
+  <form class="forms">
+    <formly-form model="vm.membership" fields="vm.fields"></formly-form>
+  </form>
+</div>
+
+<div class="modals__footer">
+  <button type="button" class="modals__button modals__button--cancel" ng-click="$dismiss()">Cancel</button>
+  <button type="button" class="modals__button" ng-click="$close(vm.membership)"
+          ng-disabled="!vm.membership.group_id || !vm.membership.role_id">
+    Ok
+  </button>
+</div>

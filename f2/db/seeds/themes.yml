@@ -1,0 +1,192 @@
+---
+- name: Default
+  description: Default theme for Project Jellyfish
+  config:
+    global:
+    - type: style
+      label: Primary Background
+      selector: primary-background
+      rule: background-color
+      value: "#EBEBEB"
+    - type: style
+      label: Secondary Background
+      selector: secondary-background
+      rule: background-color
+      value: "#FFFFFF"
+    - type: style
+      label: Primary Text
+      selector: primary-text
+      rule: color
+      value: "#333333"
+    - type: style
+      label: Primary Title
+      selector: primary-title
+      rule: color
+      value: "#414042"
+    - type: style
+      label: Primary Accent
+      selector: primary-accent
+      rule: color
+      value: "#2464CC"
+    - type: style
+      label: Primary Border
+      selector: primary-border
+      rule: border-color
+      value: "#B1B3B6"
+    link:
+    - type: style
+      label: Link Primary
+      selector: link
+      rule: color
+      value: "#2464CC"
+    - type: style
+      label: Link Hover
+      selector: link:hover
+      rule: color
+      value: "#2464CC"
+    button:
+    - type: mixin
+      label: Primary Button Text
+      selector: button-primary-text
+      rule: button-variant
+      value: "#FFFFFF"
+    - type: mixin
+      label: Primary Button Background
+      selector: button-primary-bg
+      rule: button-variant
+      value: "#2464CC"
+    - type: mixin
+      label: Primary Button Border
+      selector: button-primary-border
+      rule: button-variant
+      value: "#2464CC"
+    - type: mixin
+      label: Warning Button Text
+      selector: button-warning-text
+      rule: button-variant
+      value: "#FFFFFF"
+    - type: mixin
+      label: Warning Button Background
+      selector: button-warning-bg
+      rule: button-variant
+      value: "#CF1020"
+    - type: mixin
+      label: Warning Button Border
+      selector: button-warning-border
+      rule: button-variant
+      value: "#CF1020"
+    - type: mixin
+      label: Cancel Button Text
+      selector: button-cancel-text
+      rule: button-variant
+      value: "#FFFFFF"
+    - type: mixin
+      label: Cancel Button Background
+      selector: button-cancel-bg
+      rule: button-variant
+      value: "#414042"
+    - type: mixin
+      label: Cancel Button Border
+      selector: button-cancel-border
+      rule: button-variant
+      value: "#414042"
+    navigation:
+    - type: style
+      label: Primary Background
+      selector: nav-primary-background
+      rule: background-color
+      value: "#33394D"
+    - type: style
+      label: Secondary Background
+      selector: nav-secondary-background
+      rule: background-color
+      value: "#3D445C"
+    - type: style
+      label: Primary Text
+      selector: nav-primary-text
+      rule: color
+      value: rgba(237, 237, 237, 0.7)
+    - type: style
+      label: Primary Brand
+      selector: nav-primary-brand
+      rule: background-color
+      value: "#2464CC"
+    - type: style
+      label: Primary Hover Text
+      selector: nav-primary-text:hover
+      rule: color
+      value: "#FFFFFF"
+    - type: style
+      label: Active Sidebar Link
+      selector: nav-link-active
+      rule: color
+      value: "#FFFFFF"
+    - type: style
+      label: Active Sidebar Link Background
+      selector: nav-link-active
+      rule: background-color
+      value: "#14855F"
+    - type: style
+      label: Logout Sidebar Link Background
+      selector: nav-link-logout
+      rule: background-color
+      value: "#2B2E3E"
+    region:
+    - type: style
+      label: Header Background
+      selector: region-header-background
+      rule: background-color
+      value: "#FFFFFF"
+    tables:
+    - type: style
+      label: Header Background
+      selector: table-header-background
+      rule: background-color
+      value: "#414042"
+    - type: style
+      label: Compare-select Background
+      selector: table-compare-select-background
+      rule: background-color
+      value: "#14855F"
+    tags:
+    - type: style
+      label: Primary Background
+      selector: tag-primary-background
+      rule: background-color
+      value: "#14855F"
+    - type: style
+      label: Secondary Background
+      selector: tag-secondary-background
+      rule: background-color
+      value: "#23A27E"
+    - type: style
+      label: Primary Text
+      selector: tag-primary-text
+      rule: color
+      value: "#FFFFFF"
+    - type: style
+      label: Secondary Text
+      selector: tag-secondary-text
+      rule: color
+      value: "#14855F"
+    modal:
+    - type: style
+      label: Header Background
+      selector: modal-header-background
+      rule: background-color
+      value: "#23A27E"
+    - type: style
+      label: Header Text
+      selector: modal-header-text
+      rule: color
+      value: "#FFFFFF"
+    - type: style
+      label: Body Background
+      selector: modal-body-background
+      rule: background-color
+      value: "#FFFFFF"
+    - type: style
+      label: Footer Background
+      selector: modal-footer-background
+      rule: background-color
+      value: "#FFFFFF"

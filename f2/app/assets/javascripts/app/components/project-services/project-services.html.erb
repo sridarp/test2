@@ -1,0 +1,37 @@
+<region heading="Services">
+  <div class="region__buttons">
+    <button ng-if="vm.readOnly()" type="button" class="btn-rounded btn-rounded--short" ng-click="vm.addService()">
+      Add Service
+    </button>
+  </div>
+  <table ng-if="0 < vm.services.length" class="tables">
+    <thead>
+    <tr>
+      <th class="tables__heading">Name</th>
+      <th class="tables__heading">Product</th>
+      <th class="tables__heading tables__heading--centered tables__heading--status">Status</th>
+      <th class="tables__heading tables__heading--centered tables__heading--health">Health</th>
+      <th ng-if="vm.readOnly()" class="tables__heading tables__heading--actions">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in vm.services track by row.id">
+      <td class="tables__cell">{{ ::row.name }}</td>
+      <td class="tables__cell">{{ ::row.product.name }}</td>
+      <td class="tables__cell tables__cell--centered">{{ ::row.status }}</td>
+      <td class="tables__cell tables__cell--centered">
+        <status type="{{ :: row.health }}">{{ ::row.health }}</status>
+      </td>
+      <td class="tables__cell tables__cell--actions">
+        <a ng-if="vm.readOnly()" ui-sref="services.details({serviceId: row.id})" class="tables__action"
+           title="Edit">
+          <%= image_tag 'ic_edit.png', alt: 'Edit' %>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div ng-if="0 === vm.services.length" class="tables__empty">
+    No services have been added.
+  </div>
+</region>

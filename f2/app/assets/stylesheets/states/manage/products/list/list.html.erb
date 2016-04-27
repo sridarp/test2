@@ -1,0 +1,12 @@
+<content-header short="true">
+  <div class="manage-products-list__body">
+    <span class="content-header__title">All Products</span>
+  </div>
+  <div class="manage-products-list__aside">
+    <button class="btn-rounded" ng-click="vm.showModal()">Add Product</button>
+  </div>
+</content-header>
+
+<div class="manage-products-list__border">
+  <products-table products="vm.products" product-types="vm.productTypes"></products-table>
+</div>

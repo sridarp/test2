@@ -1,0 +1,42 @@
+<content-header short="true">
+  <div class="content-header__body">
+    <span class="content-header__title">Services</span>
+  </div>
+</content-header>
+
+<region ng-repeat="(id, services) in vm.projects track by id" heading="{{ ::services[0].project }}">
+  <table ng-if="::0 < services.length" st-table="services" class="tables">
+    <thead>
+    <tr>
+      <th st-sort="name" class="tables__heading tables__heading--sortable services-list__name">Name</th>
+      <th st-sort="product" class="tables__heading tables__heading--sortable">Product</th>
+      <th st-sort="status"
+          class="tables__heading tables__heading--sortable tables__heading--centered services-list__status">
+        Status
+      </th>
+      <th class="tables__heading tables__heading--actions">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in services track by row.id">
+      <td class="tables__cell">{{ ::row.name }}</td>
+      <td class="tables__cell">
+        <product-description product="row.product"></product-description>
+      </td>
+      <td class="tables__cell tables__cell--centered">
+        <status type="{{ ::row.status }}">{{ ::row.status }}</status>
+      </td>
+      <td class="tables__cell tables__cell--actions">
+        <a ui-sref="services.details({serviceId: row.id})">
+          <%= image_tag 'ic_edit.png', alt: 'Edit' %>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div ng-if="::0 === services.length" class="tables__empty">
+    No services at this time.
+  </div>
+
+  <services-table services="data.services"></services-table>
+</region>

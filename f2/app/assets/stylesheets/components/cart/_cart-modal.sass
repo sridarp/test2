@@ -1,0 +1,27 @@
++block(cart-modal)
+  +element(empty)
+    display: block
+    text-align: center
+    font-size: 16px
+    font-weight: bold
+    margin-bottom: 15px
+
++block(cart-table)
+  max-height: 350px
+  overflow-y: auto
+
+  +element(setup_price)
+    width: 128px
+
+  +element(price)
+    width: 128px
+
+  +element(configured)
+    width: 128px
+
+  +element(footer)
+    height: 44px
+    padding: 10px 10px 10px 0
+
+    +modifier(total)
+      font-weight: bold

@@ -1,0 +1,33 @@
+<table st-table="vm.products" class="tables">
+  <thead>
+  <tr>
+    <th st-sort="name" class="tables__heading tables__heading--sortable">
+      Description
+    </th>
+    <th st-sort="product_type" class="tables__heading products-table__product_type tables__heading--sortable">
+      Product Type
+    </th>
+    <th st-sort="active"
+        class="tables__heading products-table__available tables__heading--centered tables__heading--sortable">
+      Available
+    </th>
+    <th class="tables__heading tables__heading--actions">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="row in vm.products track by row.id">
+    <td class="tables__cell tables__cell--description">
+      <product-description product="::row"></product-description>
+    </td>
+    <td class="tables__cell">{{ ::row.product_type }}</td>
+    <td class="tables__cell tables__cell--centered">
+      <img ng-if="::row.active" src="<%= image_url 'ic_required.png' %>" alt="Active" title="Active"/>
+    </td>
+    <td class="tables__cell tables__cell--actions">
+      <a ui-sref="manage.products.edit({productId: row.id})" class="tables__action">
+        <%= image_tag 'ic_edit.png', alt: 'Edit' %>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>

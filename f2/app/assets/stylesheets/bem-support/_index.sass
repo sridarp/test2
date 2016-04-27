@@ -1,0 +1,54 @@
+// BEM : Block-Element-Modifier
+//
+// Introduction : http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/
+//
+// Definitions
+//
+// Block : A block is an independent entity, a "building block" of an application. A
+//         block can be either simple or compound (containing other blocks).
+//
+// Element : An element is a part of a block that performs a certain function. Elements
+//           are context-dependent: they only make sense in the context of the block they
+//           belong to.
+//
+// Modifier : A modifier is a property of a block or an element that alters its look or behavior.
+//
+// Rules of BEM
+// 1. Blocks are never children of Blocks, Elements, or Modifiers
+// 2. Elements may only be children of Blocks
+// 3. Modifiers may only children of Blocks or Elements, never other Modifiers
+//
+// Note: While Blocks are never children of anything else, in the markup it's a different story. In the
+// markup blocks can be made up of multiple blocks and very likely are.
+//
+// Additional:
+// Clean Markup with BEM/Sass/Bootstrap : https://medium.com/@andersonorui_/bem-sass-and-bootstrap-9f89dc07d20f
+//
+// Implementation from here: https://medium.com/@marcmintel/pushing-bem-to-the-next-level-with-sass-3-4-5239d2371321
+//
+
+$elementSeparator: '__'
+$modifierSeparator: '--'
+@import 'functions'
+@import 'mixins'
+
+// Example Usage (Sass styling)
+//
+// +block(sidebar)
+//   width: $sidebar-width
+//
+//   +element(item)
+//     color: $color-red
+//
+//     +modifier(active)
+//       color: $color-blue
+//
+//   +modifier(closed)
+//     width: $sidebar-closed-width
+//
+// Results in (with variable value assumptions)
+//
+// .sidebar { width: 250px; }
+// .sidebar--closed { width: 50px; }
+// .sidebar__item { color: #ff0000; }
+// .sidebar__item--active { color: #0000ff; }

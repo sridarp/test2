@@ -1,0 +1,30 @@
+<form name="vm.form" role="form" novalidate autocomplete="off" ng-submit="vm.onSubmit()"
+      ng-class="{'show-errors': vm.showErrors()}">
+  <div class="modals__header">
+    <button type="button" class="modals__close" ng-click="$dismiss()" aria-label="Close">
+      <i class="fa fa-close" aria-hidden="true"></i>
+      <span class="sr-only">Close</span>
+    </button>
+    <div class="modals__title">Edit Setting</div>
+  </div>
+  <div class="modals__body">
+    <div class="forms">
+      <div class="field" ng-switch="vm.inputType">
+        <div class="field__aside">
+          <label class="field__label" id="{{vm.setting.name}}-label">{{ ::vm.setting.name }}</label>
+        </div>
+        <div class="field__body" ng-class="{'has-error': vm.hasErrors('value')}">
+          <input ng-switch-when="text" name="value" type="text" class="field__input" ng-model="vm.setting.value" aria-labelledby="{{vm.setting.name}}-label"/>
+          <input ng-switch-when="password" name="value" type="password" class="field__input"
+                 ng-model="vm.setting.value"/>
+          <textarea ng-switch-when="textarea" name="value" rows="10" class="field__input"
+                    ng-model="vm.setting.value"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modals__footer">
+    <button type="button" class="modals__button modals__button--cancel" ng-click="$dismiss()">Cancel</button>
+    <button ng-disabled="vm.hasErrors()" type="submit" class="modals__button">Save</button>
+  </div>
+</form>

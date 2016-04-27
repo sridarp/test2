@@ -1,0 +1,43 @@
+<content-header short="true">
+  <div class="content-header__body">
+    <span class="content-header__title">Content Pages</span>
+  </div>
+  <div class="content-header__aside">
+    <a ui-sref="manage.cms.create" class="btn-rounded">Add Content Page</a>
+  </div>
+</content-header>
+<table ng-if="1 <= vm.pages.length" st-table="vm.pages" class="tables tables--bordered">
+  <thead>
+  <tr>
+    <th class="tables__heading">Title</th>
+    <th class="tables__heading tables__heading--centered">Created</th>
+    <th class="tables__heading tables__heading--centered">Updated</th>
+    <th class="tables__heading tables__heading--actions">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="content-pages-table__row" ng-repeat="row in vm.pages">
+    <td class="tables__cell">{{ ::row.title }}</td>
+    <td class="tables__cell tables__cell--centered">{{ ::row.created_at | date:'short' }}</td>
+    <td class="tables__cell tables__cell--centered">{{ ::row.updated_at | date:'short' }}</td>
+    <td class="tables__cell tables__cell--actions">
+      <a ui-sref="manage.cms.edit({id: row.id})" class="tables__action">
+        <%= image_tag 'ic_edit.png', alt: 'Edit' %>
+      </a>
+      <a href="#" class="tables__action"
+         confirmation
+         confirmation-position="left-center"
+         confirmation-message="Are you sure you want to remove this content?"
+         confirmation-ok-style="danger"
+         confirmation-ok-text="Yes, Delete It"
+         confirmation-on-ok="vm.deleteContentPage(row)"
+         confirmation-show-cancel="false">
+        <%= image_tag 'ic_deletequestion.png', alt: 'Delete' %>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div ng-if="0 === vm.pages.length" class="content-page__empty">
+  No page content at this time.
+</div>

@@ -1,0 +1,55 @@
+<details-table heading="Details">
+  <alert ng-repeat="alert in vm.service.latest_alerts track by latest_alert.id"
+         type="{{ ::Alert.statusToType(alert.status) }}">
+    <strong>[{{ ::alert.category | uppercase }}]</strong> &mdash; {{ ::alert.message }}
+  </alert>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Project</div>
+    <div class="details-table__detail">
+      <project-description
+        project="vm.service.project"
+        link-to="projects.details({projectId: {{vm.service.project.id}}})"></project-description>
+    </div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Product</div>
+    <div class="details-table__detail">
+      <product-description
+        product="vm.service.product"
+        link-to="products.details({productId: {{vm.service.product.id}}})"></product-description>
+    </div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Service Status</div>
+    <div class="details-table__detail">
+      <status type="{{ ::vm.service.provision_status }}">
+        <strong>{{ ::vm.service.provision_status.toUpperCase() }}</strong>
+        &mdash;
+        {{ ::vm.service.status_msg || 'No status message is available at this time.' }}
+      </status>
+    </div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Creation Date</div>
+    <div class="details-table__detail">{{ ::vm.service.created_at | date:'medium' }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Last Updated</div>
+    <div class="details-table__detail">{{ ::vm.service.updated_at | date:'medium' }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Setup Price</div>
+    <div class="details-table__detail">{{ ::vm.service.order.setup_price | currency }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Monthly Cost</div>
+    <div class="details-table__detail">{{ ::vm.service.order.monthly_cost | currency }}</div>
+  </div>
+</details-table>

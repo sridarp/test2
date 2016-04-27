@@ -1,0 +1,39 @@
+<content-header short="true">
+  <div class="content-header__body">
+    <span class="content-header__title">Providers</span>
+  </div>
+  <div class="content-header__aside">
+    <button class="btn-rounded" ng-click="vm.showModal()">Add Provider</button>
+  </div>
+</content-header>
+<table ng-if="vm.providers.length" class="tables tables--bordered" st-table="vm.providers">
+  <thead>
+  <tr>
+    <th class="tables__heading tables__heading--sortable providers-table__name" st-sort="name">Name</th>
+    <th class="tables__heading tables__heading--sortable" st-sort="description">Description</th>
+    <th class="tables__heading tables__heading--sortable providers-table__type" st-sort="type">Type</th>
+    <th class="tables__heading tables__heading--sortable tables__heading--centered providers-table__active"
+        st-sort="active">
+      Active
+    </th>
+    <th class="tables__heading tables__heading--actions">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="row in vm.providers track by row.id">
+    <td class="tables__cell">{{ ::row.name }}</td>
+    <td class="tables__cell">{{ ::row.description }}</td>
+    <td class="tables__cell">{{ ::row.type }}</td>
+    <td class="tables__cell tables__cell--centered">
+      <img ng-if="row.active" src="<%= image_url 'ic_required.png' %>" alt="Active" title="Active"/>
+    </td>
+    <td class="tables__cell tables__cell--actions">
+      <img ng-click="vm.edit(row)" class="tables__action" src="<%= image_url 'ic_edit.png' %>" alt="Edit"/>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div ng-if="!vm.providers.length" class="tables__empty tables--bordered">
+  No providers have been added.
+  <button class="btn-link" ng-click="vm.showModal()">Add one now.</button>
+</div>

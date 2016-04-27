@@ -1,0 +1,7 @@
+<div modal-render="{{$isRendered}}" tabindex="-1" role="dialog" class="modals"
+     modal-animation-class="fade" modal-in-class="in"
+     ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)">
+  <div class="modals__dialog" ng-class="size ? 'modal-' + size : ''">
+    <div class="modals__content" modal-transclude></div>
+  </div>
+</div>

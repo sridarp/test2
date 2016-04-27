@@ -1,0 +1,10 @@
+<div class="btn-group" dropdown keyboard-nav>
+  <button id="simple-btn-keyboard-nav" type="button" class="btn-rounded" dropdown-toggle>
+    Actions <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="simple-btn-keyboard-nav">
+    <li role="menuitem" ng-repeat="operation in vm.operations">
+      <a href="#" ng-click="vm.executeOperation(operation.name)">{{ ::operation.name }}</a>
+    </li>
+  </ul>
+</div>

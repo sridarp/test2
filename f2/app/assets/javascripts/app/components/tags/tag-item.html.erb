@@ -1,0 +1,7 @@
+<span class="tag-item" ng-class="{'tag-item--selected': vm.selected, 'tag-item--removable': vm.allowRemove}">
+  {{ ::vm.text }}
+  <i class="tag-item__active fa fa-check" ng-if="vm.active"></i>
+  <a ng-if="vm.allowRemove" href="#" class="tag-item__button" ng-click="vm.remove()">
+    <i class="fa fa-remove"></i>
+  </a>
+</span>

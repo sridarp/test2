@@ -1,0 +1,43 @@
+<region heading="Memberships">
+  <div class="region__buttons">
+    <button ng-if="vm.readOnly()" type="button" class="btn-rounded btn-rounded--short" ng-click="vm.showModal()">
+      Add Membership
+    </button>
+  </div>
+  <table ng-if="0 < vm.memberships.length" class="tables">
+    <thead>
+    <tr>
+      <th class="tables__heading">Group</th>
+      <th class="tables__heading">Role</th>
+      <th class="tables__heading tables__heading--centered">Members</th>
+      <th ng-if="vm.readOnly()" class="tables__heading tables__heading--actions">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in vm.memberships track by row.id">
+      <td class="tables__cell">{{ row.group.name }}</td>
+      <td class="tables__cell">{{ row.role.name }}</td>
+      <td class="tables__cell tables__cell--centered">{{ row.group.staff_count }}</td>
+      <td class="tables__cell tables__cell--actions">
+        <a ng-if="vm.archivedProject()" href="#" ng-click="vm.showModal(row)" class="tables__action"
+           title="Edit">
+          <%= image_tag 'ic_edit.png', alt: 'Edit' %>
+        </a>
+        <a ng-if="vm.readOnly()" href="#" class="tables__action" title="Delete"
+           confirmation
+           confirmation-position="left-center"
+           confirmation-message="Are you sure you want to remove this membership?"
+           confirmation-ok-style="danger"
+           confirmation-ok-text="Yes, Delete It"
+           confirmation-on-ok="vm.remove(row)"
+           confirmation-show-cancel="false">
+          <%= image_tag 'ic_deletequestion.png', alt: 'Delete' %>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div ng-if="0 === vm.memberships.length" class="tables__empty">
+    No memberships at this time.
+  </div>
+</region>

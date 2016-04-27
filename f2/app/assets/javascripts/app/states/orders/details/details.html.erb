@@ -1,0 +1,90 @@
+<content-header short="true">
+  <span class="content-header__title">Order Details</span>
+</content-header>
+
+<details-table heading="Order Details">
+  <div class="details-table__row">
+    <div class="details-table__label">Project</div>
+    <project-description project="vm.project"
+                         link-to="projects.details({projectId: vm.project.id})"></project-description>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Placed by</div>
+    <div class="details-table__detail">{{ ::vm.staff.full_name }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Status</div>
+    <div class="details-table__detail">
+      <status type="{{ ::vm.order.status }}">{{ ::vm.order.status | uppercase }}</status>
+    </div>
+  </div>
+
+  <div ng-if="::vm.order.status_msg" class="details-table__row">
+    <div class="details-table__label">Status Message</div>
+    <div class="details-table__detail">{{ ::vm.order.status_msg }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Setup Cost</div>
+    <div class="details-table__detail">{{ ::vm.order.setup_price | currency }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Hourly Cost</div>
+    <div class="details-table__detail">{{ ::vm.order.hourly_price | currency }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Monthly Cost</div>
+    <div class="details-table__detail">{{ ::vm.order.monthly_cost | currency }}</div>
+  </div>
+</details-table>
+
+
+<details-table heading="Service: {{ ::service.name}}" ng-repeat="(id, service) in vm.order.services track by id">
+  <div class="details-table__row">
+    <div class="details-table__label">Product</div>
+    <product-description product="service.product"></product-description>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Service</div>
+    <div class="details-table__detail">
+      <a ui-sref="services.details({serviceId: service.id})">{{ ::service.name }}</a>
+    </div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Status</div>
+    <div class="details-table__detail">
+      <status type="{{ ::vm.order.status }}">{{ ::service.status | uppercase }}</status>
+    </div>
+  </div>
+
+  <div ng-if="::service.status_msg" class="details-table__row">
+    <div class="details-table__label">Status Message</div>
+    <div class="details-table__detail">{{ ::service.status_msg }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Creation Date</div>
+    <div class="details-table__detail">{{ :: service.created_at | date:'medium' }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Setup Cost</div>
+    <div class="details-table__detail">{{ ::service.product.setup_price | currency }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Hourly Cost</div>
+    <div class="details-table__detail">{{ ::service.product.hourly_price | currency }}</div>
+  </div>
+
+  <div class="details-table__row">
+    <div class="details-table__label">Monthly Cost</div>
+    <div class="details-table__detail">{{ ::service.product.monthly_price | currency }}</div>
+  </div>
+</details-table>

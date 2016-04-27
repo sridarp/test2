@@ -1,0 +1,105 @@
+{
+    "Infrastructure": {
+        "type": "object",
+        "title": "Infrastructure",
+        "description": "Infrastructure Solutions"
+    },
+    "Platforms": {
+        "type": "object",
+        "title": "Platforms",
+        "description": "Platform Solutions"
+    },
+    "Applications": {
+        "type": "object",
+        "title": "Applications",
+        "description": "Application Solutions"
+    },
+    "Databases": {
+        "type": "object",
+        "title": "Databases",
+        "description": "Database Solutions",
+        "required": ["db_instance_class", "engine", "disk_size", "storage_type"],
+        "properties": {
+            "db_instance_class": {
+                "title": "Instance Size",
+                "type": "string",
+                "enum": [
+                    "db.m3.medium",
+                    "db.m3.large",
+                    "db.m3.xlarge"
+                ],
+                "default": "db.m3.medium"
+            },
+            "engine": {
+                "title": "DB Engine",
+                "type": "string",
+                "enum": [
+                    "aurora",
+                    "mysql",
+                    "postgresql",
+                    "sqlserver"
+                ],
+                "default": "postgresql"
+            },
+            "disk_size": {
+                "title": "Disk Size in GB",
+                "type": "integer",
+                "default": 40
+            },
+            "storage_type": {
+                "title": "Storage Type",
+                "type": "string",
+                "enum": [
+                    "standard",
+                    "gp2",
+                    "io1",
+                    "ssd"
+                ],
+                "default": "ssd"
+            }
+        }
+    },
+    "Big Data": {
+        "type": "object",
+        "title": "Big Data",
+        "description": "Big Data Solutions"
+    },
+    "Datasets": {
+        "type": "object",
+        "title": "Datasets",
+        "description": "Available Datasets"
+    },
+    "Storage": {
+        "type": "object",
+        "title": "Storage",
+        "description": "Storage Solutions",
+        "required": ["availability", "region"],
+        "properties": {
+            "availability": {
+                "title": "Storage Redundancy",
+                "type": "string",
+                "enum": ["normal", "reduced"],
+                "default": "normal"
+            },
+            "region": {
+                "title": "Region",
+                "type": "string",
+                "enum": [
+                    "us-standard",
+                    "us-west-1",
+                    "us-west-2",
+                    "eu",
+                    "ap-northeast-1",
+                    "ap-southeast-1",
+                    "ap-southeast-2"
+                ],
+                "default": "us-standard"
+            }
+        }
+    },
+    "Staff": {
+        "type": "object",
+        "title": "Staff",
+        "description": "Staff Solutions"
+    }
+}

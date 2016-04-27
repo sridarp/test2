@@ -1,0 +1,45 @@
++block(product-details)
+
+  +element(tag)
+    display: inline-block
+    margin: 0 3px 0 0
+
++block(product-details-heading)
+
+  +element(aside)
+    text-align: right
+    height: 90px
+    position: absolute
+    right: 0
+    top: 0
+
+  +element(icon)
+    width: 80px
+    height: 80px
+    background-color: $app-color-white
+    border: 2px solid $app-color-gray
+    border-radius: 3px
+    margin-right: 20px
+    vertical-align: top
+
++block(product-pricing)
+  @extend .table-striped
+  width: 100%
+  background-color: $app-color-white
+
+  +element(heading)
+    height: 44px
+    font-weight: bold
+    text-transform: uppercase
+    color: $app-color-dark-gray
+
+  +element(cell)
+    height: 44px
+    font-size: 14px
+    border: none
+    padding: 10px 10px 10px 0
+    vertical-align: top
+    position: relative
+
+    +modifier(padding)
+      width: 20px

@@ -1,0 +1,14 @@
+<div class="errors">
+  <div class="navigation">
+    <a class="navigation__brand" ui-sref="dashboard">
+      <%= image_tag 'jellyfish_main_logo.png', alt: 'Jellyfish Main Logo' %>
+    </a>
+  </div>
+  <div class="errors__window">
+    <img class="errors__logo" src="<%= image_url 'jelly_alone.png' %>" alt="Jellyfish Logo"/>
+    <div class="errors__title">The page you requested cannot be found.</div>
+    <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+    <p>We apologize for the inconvenience.</p>
+    <p ng-if="vm.state"><strong>Unknown state: {{ vm.state }}</strong></p>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div ng-if="::vm.category.products.length > 0" class="catalog-category">
+  <div class="catalog-category__header">
+    <span class="catalog-category__title">{{ ::vm.category.name }}</span>
+    <a href="#" title="Collapse">
+      <img class="catalog-category__collapse-icon" src="<%= image_url 'ic_viewcategory_dropdown.png' %>"
+           ng-click="vm.collapsed = !vm.collapsed" alt="Collapse">
+    </a>
+  </div>
+  <div class="catalog-category__body" collapse="vm.collapsed" role="group">
+    <table st-table="vm.category.products" class="tables">
+      <thead>
+      <tr>
+        <th class="tables__heading catalog-category__compare">Compare</th>
+        <th st-sort="name" class="tables__heading tables__heading--sortable catalog-category__description">
+          Description
+        </th>
+        <th st-sort="monthly_price" class="tables__heading tables__heading--sortable catalog-category__monthly">
+          Monthly Price
+        </th>
+        <th class="tables__heading tables__heading--actions">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="row in vm.category.products track by row.id">
+        <td class="tables__cell catalog-category__compare">
+          <select-product product="::row"></select-product>
+        </td>
+        <td class="tables__cell catalog-category__description">
+          <product-description product="::row"></product-description>
+        </td>
+        <td class="tables__cell catalog-category__monthly">
+          <computed-monthly-price pricing="row"></computed-monthly-price>
+        </td>
+        <td class="tables__cell tables__cell--actions">
+          <a ng-click="vm.addToCart(row)"
+             class="tables__action" title="Add Product to Cart">
+            <%= image_tag 'ic_cart.png', alt: 'Add product to Cart' %>
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

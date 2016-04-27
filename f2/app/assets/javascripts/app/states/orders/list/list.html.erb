@@ -1,0 +1,34 @@
+<content-header short="true">
+  <span class="content-header__title">Order History</span>
+</content-header>
+
+<region ng-repeat="(id, orders) in vm.projects track by id" heading="{{ ::orders[0].project }}">
+  <table st-table="orders" class="tables">
+    <thead>
+    <tr>
+      <th class="tables__heading tables__heading--sortable" st-sort="product_name">Services</th>
+      <th class="tables__heading tables__heading--sortable orders-list__staff" st-sort="staff">Placed By</th>
+      <th class="tables__heading tables__heading--sortable orders-list__cost" st-sort="total">Monthly Cost</th>
+      <th class="tables__heading tables__heading--sortable orders-list__status">Status</th>
+      <th class="tables__heading tables__heading--sortable orders-list__date" st-sort="created_at">Order Date</th>
+      <th class="tables__heading tables__heading--actions">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="selectRow" ng-repeat="row in orders">
+      <td class="tables__cell">
+        {{ ::row.services.length }}
+      </td>
+      <td class="tables__cell">{{ ::row.staff }}</td>
+      <td class="tables__cell">{{ ::row.total | currency }}</td>
+      <td class="tables__cell"><status type="{{ ::row.status }}">{{ ::row.status }}</status></td>
+      <td class="tables__cell">{{ ::row.created_at | date:'short' }}</td>
+      <td class="tables__cell tables__cell--actions">
+        <a ui-sref="orders.details({orderId: row.id})" class="tables__action">
+          <%= image_tag 'ic_info.png', alt: 'Details' %>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</region>
